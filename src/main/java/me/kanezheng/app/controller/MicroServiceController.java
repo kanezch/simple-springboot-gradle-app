@@ -19,7 +19,8 @@ import javax.validation.Valid;
 
 @Api(value="MicroService Management System", description="Operations pertaining to microservice in MicroService Management System")
 @RestController
-@RequestMapping(value = "/v1/microservices")
+//@RequestMapping(value = "/v1/microservices")
+@RequestMapping(value = "/v1/hello")
 public class MicroServiceController {
 
     private final static Log logger = LogFactory.getLog(MicroServiceController.class);
@@ -27,9 +28,9 @@ public class MicroServiceController {
     @Autowired
     IMsService msService;
 
-    @ApiOperation(value = "View a list of available MicroServices", response = ResponseEntity.class)
-    @RequestMapping(value="",method = RequestMethod.GET)
-    public  ResponseEntity<FindResultResponse> getMicroServices(@RequestParam(value = "pageNum")Integer pageNum,
+/*    @ApiOperation(value = "View a list of available MicroServices", response = ResponseEntity.class)
+    @RequestMapping(value="", method = RequestMethod.GET)
+    public ResponseEntity<FindResultResponse> getMicroServices(@RequestParam(value = "pageNum")Integer pageNum,
                                                                 @RequestParam(value = "pageSize")Integer pageSize){
 
         FindResultResponse resultResponse = msService.findPageAble(pageNum, pageSize);
@@ -37,6 +38,15 @@ public class MicroServiceController {
         logger.info(String.format("Get all microservices:pageNum=%s, pageSize=%s", pageNum, pageSize));
 
         return new ResponseEntity(resultResponse, HttpStatus.OK);
+    }*/
+
+
+    @RequestMapping(value="", method = RequestMethod.GET)
+    public ResponseEntity<String> getMicroServices(){
+
+        logger.info(String.format("Receive request hello"));
+
+        return new ResponseEntity("hello kane!", HttpStatus.OK);
     }
 
     @ApiOperation(value = "Get a MicroService by name")
